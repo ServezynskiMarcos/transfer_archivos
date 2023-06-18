@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>Eliminar Archivo</h2>
+  <p>¿Estás seguro de que deseas eliminar el archivo "{{ object.nombre }}"?</p>
+  <form method="post">
+    {% csrf_token %}
+    <input type="submit" value="Eliminar">
+    <a href="{% url 'mostrar_archivos_guardados' %}">Cancelar</a>
+  </form>
+{% endblock %}

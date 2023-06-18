@@ -1,24 +1,10 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Recibir Archivo</title>
-</head>
-<body>
-    <h1>Recibir Archivo</h1>
-    <form method="POST" enctype="multipart/form-data">
-        {% csrf_token %}
-        <input type="file" name="archivo">
-        <input type="submit" value="Enviar">
-    </form>
+{% extends 'base.html' %}
 
-    {% if archivo_guardado %}
-    <div>
-        <h2>Archivo guardado correctamente:</h2>
-        <p>Nombre: {{ archivo_guardado.name }}</p>
-        <p>Tamaño: {{ archivo_guardado.size }} bytes</p>
-        <p>Ruta: {{ archivo_guardado.path }}</p>
-    </div>
-    {% endif %}
-</body>
-</html>
-
+{% block content %}
+  <h2>Subir Archivo</h2>
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Enviar</button>
+  </form>
+{% endblock %}

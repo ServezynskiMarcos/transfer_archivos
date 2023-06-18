@@ -1,20 +1,19 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Archivos Guardados</title>
-</head>
-<body>
-    <h1>Archivos Guardados</h1>
+{% extends 'base.html' %}
 
-    {% if archivos %}
-        <ul>
-        {% for archivo in archivos %}
-            <a href="{% url 'descargar_archivo' archivo.id %}">
-            <li>{{ archivo.nombre }}</li></a>
-        {% endfor %}
-        </ul>
-    {% else %}
-        <p>No hay archivos guardados.</p>
-    {% endif %}
-</body>
-</html>
+{% block content %}
+  <h2>Archivos Guardados</h2>
+  <ul>
+    {% for archivo in archivos %}
+      <li>
+        <h3>{{ archivo.nombre }}</h3>
+        {% if archivo.es_imagen %}
+          <img src="{{ archivo.url_vista_previa }}" alt="Vista previa" width="150px" height="150px">
+        {% else %}
+          <p>No se puede mostrar vista previa.</p>
+        {% endif %}
+        <a href="{% url 'descargar_archivo' archivo.id %}">Descargar</a>
+        <a href="{% url 'eliminar_archivo' archivo.id %}">Eliminar</a>
+      </li>
+    {% endfor %}
+  </ul>
+{% endblock %}
