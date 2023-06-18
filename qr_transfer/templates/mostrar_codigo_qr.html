@@ -2,6 +2,10 @@
 {% load static %}
 
 {% block content %}
-  <h2>Código QR</h2>
-  <img src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data={{ url }}" alt="Código QR">
+  <div class="container d-flex align-items-center justify-content-center vh-100">
+    <div class="text-center">
+      <h2 class="mt-4">Código QR</h2>
+      <img src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data={{ url }}" alt="Código QR" class="img-fluid mt-4">
+    </div>
+  </div>
 {% endblock %}

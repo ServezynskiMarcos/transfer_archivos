@@ -1,11 +1,20 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  <h2>Eliminar Archivo</h2>
-  <p>¿Estás seguro de que deseas eliminar el archivo "{{ object.nombre }}"?</p>
-  <form method="post">
-    {% csrf_token %}
-    <input type="submit" value="Eliminar">
-    <a href="{% url 'mostrar_archivos_guardados' %}">Cancelar</a>
-  </form>
+  <div class="container d-flex align-items-center justify-content-center vh-100">
+    <div class="text-center">
+      <h2>Eliminar Archivo</h2>
+      <p>¿Estás seguro de que deseas eliminar el archivo "{{ object.nombre }}"?</p>
+      {% if object.es_imagen %}
+              <img src="{{ object.url_vista_previa }}" class="card-img-top" alt="{{ object.nombre }}" style="max-height: 200px; object-fit: contain;">
+      {% endif %}
+      <form method="post">
+        {% csrf_token %}
+        <div class="mt-4">
+          <input type="submit" value="Eliminar" class="btn btn-danger">
+          <a href="{% url 'mostrar_archivos_guardados' %}" class="btn btn-secondary">Cancelar</a>
+        </div>
+      </form>
+    </div>
+  </div>
 {% endblock %}

@@ -1,19 +1,27 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  <h2>Archivos Guardados</h2>
-  <ul>
-    {% for archivo in archivos %}
-      <li>
-        <h3>{{ archivo.nombre }}</h3>
-        {% if archivo.es_imagen %}
-          <img src="{{ archivo.url_vista_previa }}" alt="Vista previa" width="150px" height="150px">
-        {% else %}
-          <p>No se puede mostrar vista previa.</p>
-        {% endif %}
-        <a href="{% url 'descargar_archivo' archivo.id %}">Descargar</a>
-        <a href="{% url 'eliminar_archivo' archivo.id %}">Eliminar</a>
-      </li>
-    {% endfor %}
-  </ul>
+  <h2 class="text-center mb-4">Archivos Guardados</h2>
+  <div class="row">
+    {% if archivos %}
+      {% for archivo in archivos %}
+        <div class="col-lg-3 col-md-4 col-sm-6">
+          <div class="card mb-3">
+            {% if archivo.es_imagen %}
+              <img src="{{ archivo.url_vista_previa }}" class="card-img-top" alt="{{ archivo.nombre }}" style="max-height: 200px; object-fit: contain;">
+            {% endif %}
+            <div class="card-body text-center">
+              <h5 class="card-title">{{ archivo.nombre }}</h5>
+              <div class="d-flex justify-content-center">
+                <a href="{% url 'descargar_archivo' archivo.id %}" class="btn btn-primary btn-sm mx-1">Descargar</a>
+                <a href="{% url 'eliminar_archivo' archivo.id %}" class="btn btn-danger btn-sm mx-1">Eliminar</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    {% else %}
+      <p class="text-center">No hay archivos guardados.</p>
+    {% endif %}
+  </div>
 {% endblock %}
