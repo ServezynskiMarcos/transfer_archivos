@@ -1,0 +1,12 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Generador de QR</title>
+</head>
+<body>
+    <h1>Generador de QR</h1>
+    <img src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data={{ url }}" alt="Código QR">
+</body>
+</html>
